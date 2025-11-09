@@ -31,17 +31,11 @@ jobs:
         run: npm install -g newman newman-reporter-htmlextra
 
       - name: Lancement de newman
-        run: |
-          newman run "./postman/todo.postman_collection.json" \
-          -e "./postman/todo.postman_environment.json" \
-           -r htmlextra \
-           --reporter-htmlextra-export "./postman/rapport.html"
-      - name: upload HTML test report as artifact
-        uses: actions/upload-artifact@v4
+        run: npm run test:api:report
+
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v4.0.0
         with:
-          name: newman-test-report
-          path: postman/rapportNewman.html
-      - name: Add HTML report link
-        run: |
-          echo "### Rapport newman généré" >> $GITHUB_STEP_SUMMARY
-          echo "Télécharger le rapport depuis la section artifact **Artifact ->newman-test-report**" >> $GITHUB_STEP_SUMMARY
+          name: newman-report
+          path: "./postman/api-report.html"
