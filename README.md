@@ -32,4 +32,5 @@
 - Télécharger / Cloner le répertoire
 - Naviguer dans le projet
 - Installation des dépendences avec la commande: npm install
+- Lancer le projet avec la commande: npm start
 - Application disponible sur http://localhost:3000
