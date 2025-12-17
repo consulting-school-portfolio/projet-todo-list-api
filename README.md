@@ -6,7 +6,7 @@
 - Modifier les tâches existantes
 - Supprimer des tâches
 - Lister toutes les tâches
-- Marques les tâches comme terminés
+- Marquer les tâches comme terminées
 
 ## Stack front-end
 

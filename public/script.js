@@ -55,7 +55,7 @@ async function afficherTaches() {
         }
         ${
           !data[i].completed
-            ? `<button onclick="updateTodo('${data[i]}')">Modifier Todo</button>`
+            ? `<button onclick="updateTodo('${data[i].id}')">Modifier Todo</button>`
             : ""
         }
         ${`<button onclick="deleteTodo('${data[i].id}')">Supprimer Todo</button>`}
@@ -80,21 +80,22 @@ async function markAsComplete(id) {
   afficherTaches();
 }
 
-async function updateTodo(todo) {
+async function updateTodo(id) {
   let newTitle;
   let newDescription;
 
+
   do {
-    newTitle = prompt(todo.title);
-  } while (newTitle !== null && newTitle === "");
+    newTitle = prompt('new title ?');
+  } while (newTitle.trim() !== null && newTitle.trim() === "");
 
   if (newTitle) {
-    newDescription = prompt(todo.description);
+    newDescription = prompt('new description ?');
   }
 
   if (newTitle) {
     const res = await fetch(
-      `http://localhost:3000/api/v1/updateTodo/${todo.id}`,
+      `http://localhost:3000/api/v1/updateTodo/${id}`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
