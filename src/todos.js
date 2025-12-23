@@ -1,4 +1,9 @@
-const { nanoid } = require("nanoid");
+function guidGenerator() {
+    var S4 = function() {
+       return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+    };
+    return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+}
 
 let todos = [];
 
@@ -9,7 +14,7 @@ exports.addTodo = (req, res) => {
     return res.status(400).json({ error: "Le titre est obligatoire !" });
   }
   const newTask = {
-    id: nanoid(),
+    id: guidGenerator(),
     title: title,
     description: description,
     completed: false,
